@@ -1,0 +1,407 @@
+/* ===========================================================
+   File: style.css
+   Description: Visual design for the NuBest Tall Gummies product page.
+   Defines the color and type system, layout for each section (hero,
+   taste, benefits, timeline, facts, footer), and responsive/accessible
+   behavior (mobile breakpoints, focus states, reduced-motion support).
+   Palette: deep forest + berry, warm paper accents
+   Type: Fraunces (display) / Inter (body)
+   Used by: index.html
+=========================================================== */
+
+:root {
+  --forest: #1c3327;
+  --forest-deep: #12241b;
+  --paper: #f7f1e2;
+  --paper-dim: #eee5cf;
+  --berry: #a72a4a;
+  --berry-soft: #d98ba1;
+  --gold: #d6a13d;
+  --ink: #21201b;
+  --ink-soft: #514c40;
+  --line: rgba(33, 32, 27, 0.12);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --measure: 62ch;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  color: var(--forest-deep);
+}
+
+h1 { font-size: clamp(2.1rem, 4.2vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); max-width: var(--measure); }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0 0 1em; max-width: var(--measure); color: var(--ink-soft); }
+
+a { color: inherit; }
+
+/* ---------- topbar ---------- */
+
+.topbar {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+.wordmark em { color: var(--gold); font-style: normal; }
+
+.topnav { display: flex; gap: 28px; }
+.topnav a {
+  color: var(--paper-dim);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.topnav a:hover { color: var(--gold); }
+
+@media (max-width: 640px) {
+  .topnav { display: none; }
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  background: var(--forest);
+  color: var(--paper);
+  padding: 72px 0 88px;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
+
+.hero__kicker {
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.hero h1 { color: var(--paper); max-width: 14ch; }
+
+.hero__lede {
+  color: var(--paper-dim);
+  font-size: 1.08rem;
+  max-width: 52ch;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn--primary {
+  background: var(--berry);
+  color: var(--paper);
+}
+.btn--primary:hover { background: #8f2340; transform: translateY(-1px); }
+
+.hero__price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--paper);
+}
+.hero__price span { font-family: var(--font-body); font-size: 0.85rem; color: var(--paper-dim); }
+
+/* nutrient strip card */
+
+.nutrient-strip {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 18px;
+  padding: 26px 26px 22px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+}
+
+.nutrient-strip__label {
+  font-size: 0.8rem;
+  text-transform: none;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.nutrient-strip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nutrient-strip li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.nutrient-strip li:first-child { border-top: none; }
+.nutrient-strip li small { color: var(--ink-soft); font-size: 0.8rem; }
+
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex: none;
+}
+.dot--d3 { background: var(--gold); }
+.dot--ca { background: var(--forest); }
+.dot--zn { background: var(--berry); }
+.dot--k2 { background: #6a8f6a; }
+.dot--mg { background: #b98a45; }
+.dot--ar { background: #7a4a5c; }
+
+.nutrient-strip__toggle {
+  margin-top: 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nutrient-strip__more {
+  margin-top: 12px;
+  columns: 2;
+  column-gap: 18px;
+}
+.nutrient-strip__more li {
+  border: none;
+  padding: 4px 0;
+  font-size: 0.85rem;
+  break-inside: avoid;
+}
+
+/* ---------- generic section rhythm ---------- */
+
+.section { padding: 72px 0; }
+.section:nth-of-type(even) { background: var(--paper-dim); }
+
+/* ---------- taste ---------- */
+
+.taste__grid h2 { margin-bottom: 34px; }
+
+.taste__notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+@media (max-width: 760px) {
+  .taste__notes { grid-template-columns: 1fr; }
+}
+
+.note__stage {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--berry);
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.taste__note {
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- inside / benefits ---------- */
+
+.inside__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 30px;
+}
+@media (max-width: 760px) {
+  .inside__grid { grid-template-columns: 1fr; }
+}
+
+.benefit {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px;
+}
+.benefit h3 { color: var(--forest); }
+
+.disclaimer-inline {
+  margin-top: 26px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  max-width: 70ch;
+}
+
+/* ---------- journey timeline ---------- */
+
+.timeline {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+  border-left: 2px solid var(--line);
+}
+
+.timeline li {
+  display: flex;
+  gap: 22px;
+  padding: 0 0 34px 26px;
+  position: relative;
+}
+.timeline li:last-child { padding-bottom: 0; }
+
+.timeline__mark {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--paper);
+  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.timeline h3 { margin-bottom: 6px; }
+.timeline p { margin: 0; }
+
+/* ---------- facts ---------- */
+
+.facts__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+@media (max-width: 760px) {
+  .facts__grid { grid-template-columns: 1fr; }
+}
+
+.facts__list {
+  margin: 20px 0;
+}
+.facts__list dt {
+  font-weight: 600;
+  color: var(--forest);
+  margin-top: 12px;
+}
+.facts__list dd {
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+}
+
+.facts__note {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.pill-list {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pill-list li {
+  border: 1px solid var(--berry);
+  color: var(--berry);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.88rem;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: var(--forest-deep);
+  color: var(--paper-dim);
+  padding: 40px 0 50px;
+}
+
+.disclaimer {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(247, 241, 226, 0.65);
+  max-width: 90ch;
+}
+
+.footer__link { margin-top: 16px; }
+.footer__link a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.footer__link a:hover { text-decoration: underline; }
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn--primary:hover { transform: none; }
+}
+
+/* ---------- focus visibility ---------- */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
